@@ -41,6 +41,12 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Batman",
+      "image": "https://preview.redd.it/j8yucgxz97a21.jpg?auto=webp&s=10a6bb1e1023aa3f9e6d238d479618971b1582f1",
+      "price": "0.02",
+      "id": 8
     }
   ]
 }
