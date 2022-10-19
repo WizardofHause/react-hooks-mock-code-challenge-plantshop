@@ -23,6 +23,8 @@ function PlantPage() {
     })
       .then(response => response.json())
       .then(plantData => setPlants([...plants, plantData]))
+    const form = document.querySelector('form')
+    form.reset()
   }
 
   const handleSearch = (e) => {

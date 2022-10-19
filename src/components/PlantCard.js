@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PlantCard({ plant }) {
+function PlantCard({ plant, onDeletePlant }) {
 
   const { id, name, image, price, } = plant
 
@@ -8,6 +8,16 @@ function PlantCard({ plant }) {
 
   const handleStock = () => {
     setStock(!stock)
+  }
+
+  const handleDelete = () => {
+    fetch(`http://localhost:6001/plants/${id}`, {
+      method: "DELETE"
+    })
+    .then((response) => response.json())
+    .then(() => {
+      onDeletePlant(id)
+    })
   }
 
   return (
@@ -20,6 +30,7 @@ function PlantCard({ plant }) {
       ) : (
         <button onClick={handleStock}>Out of Stock</button>
       )}
+      <button className="remove" onClick={handleDelete}>Remove Plant</button>
     </li>
   );
 }
