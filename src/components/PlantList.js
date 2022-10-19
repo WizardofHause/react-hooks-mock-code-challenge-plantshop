@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList({search}) {
+function PlantList({ search }) {
   const [plants, setPlants] = useState([])
 
   useEffect(() => {
@@ -10,12 +10,13 @@ function PlantList({search}) {
       .then((plants) => setPlants(plants))
   }, []);
 
-  const filteredPlants = plants.filter(plant => 
+  const filteredPlants = plants.filter(plant =>
     plant.name.toLowerCase().includes(search.toLowerCase()))
+
 
   const plantCard = filteredPlants.map((plant) => {
     return (
-      <PlantCard 
+      <PlantCard
         key={plant.id}
         plant={plant}
       />
