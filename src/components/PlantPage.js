@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewPlantForm from "./NewPlantForm";
 import PlantList from "./PlantList";
 import Search from "./Search";
@@ -12,6 +12,12 @@ function PlantPage() {
     price: ""
   })
 
+    useEffect(() => {
+    fetch("http://localhost:6001/plants")
+      .then(response => response.json())
+      .then((plants) => setPlants(plants))
+  }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
     fetch("http://localhost:6001/plants", {
@@ -23,9 +29,8 @@ function PlantPage() {
     })
       .then(response => response.json())
       .then(plantData => setPlants([...plants, plantData]))
-    const form = document.querySelector('form')
-    form.reset()
   }
+
 
   const handleSearch = (e) => {
     setSearch(e.target.value)
@@ -35,7 +40,7 @@ function PlantPage() {
     <main>
       <NewPlantForm plantData={plantData} setPlantData={setPlantData} handleSubmit={handleSubmit}/>
       <Search search={search} handleSearch={handleSearch} />
-      <PlantList search={search} plants={plants} setPlants={setPlants}/>
+      <PlantList search={search} plants={plants} setPlants={setPlants} />
     </main>
   );
 }
