@@ -18,8 +18,7 @@ function PlantPage() {
       .then((plants) => setPlants(plants))
   }, []);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit() {
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
@@ -29,8 +28,12 @@ function PlantPage() {
     })
       .then(response => response.json())
       .then(plantData => setPlants([...plants, plantData]))
+      setPlantData({
+        name: "",
+        image: "",
+        price: ""
+      })
   }
-
 
   const handleSearch = (e) => {
     setSearch(e.target.value)
